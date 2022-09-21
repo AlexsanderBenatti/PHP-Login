@@ -7,9 +7,12 @@ if (isset($_POST['idRM']) || isset($_POST['senha'])) {
     } else if (strlen($_POST['senha']) == 0) {
         echo "Preencha seu nome de aluno";
     } else {
+        $idRM = $_POST['idRM'];
+        $senha = $_POST['senha'];
+        //Usar: ' OR '1'='1   para ambos os campos de texto
         //Proteção contra SQL Injection:
-        $idRM = $mysqli->real_escape_string($_POST['idRM']);
-        $senha = $mysqli->real_escape_string($_POST['senha']);
+        /*$idRM = $mysqli->real_escape_string($_POST['idRM']);
+        $senha = $mysqli->real_escape_string($_POST['senha']);*/
 
         $sql_code = "SELECT * FROM usuarios WHERE rm = '$idRM' AND nome = '$senha'";
         $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
